@@ -33,7 +33,7 @@ public class EmployeeServiceTests {
 	
 	@Test
 	void testTaxableIncome() {
-		int result = employeeService.calculateTaxableIncome(employee);
+		int result = employeeService.calculateTaxableIncome(employee.getAnnualSalary());
 		
 		int expected = 922;
 		
