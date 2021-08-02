@@ -1,4 +1,4 @@
-package com.ando.codingexercise;
+package com.codingexercise;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
