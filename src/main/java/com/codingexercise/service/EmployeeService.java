@@ -10,7 +10,7 @@ public class EmployeeService {
 	public MonthlyPayslip getMonthlyPaySlip(Employee employee) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(Calendar.MONTH, employee.getPaymentMonth());
-		String fromDate = calendar.getActualMinimum(Calendar.DATE) + " " + calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
+		String fromDate = "01 " + calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
 		String toDate = calendar.getActualMaximum(Calendar.DATE) + " " + calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
 		int grossIncome = employee.getAnnualSalary() / 12;
 		int incomeTax = calculateTaxableIncome(employee.getAnnualSalary());
