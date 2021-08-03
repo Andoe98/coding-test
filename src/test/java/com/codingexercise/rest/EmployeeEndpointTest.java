@@ -1,12 +1,15 @@
 package com.codingexercise.rest;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -16,8 +19,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
 @SpringBootTest
+@AutoConfigureMockMvc
 class EmployeeEndpointTest {
 	
+	@Autowired
 	private MockMvc mockMvc;
 	private String endpoint = "/employee/payslip";
 	private ObjectMapper mapper = new ObjectMapper();
@@ -38,13 +43,14 @@ class EmployeeEndpointTest {
 	    mockMvc.perform(post(endpoint).contentType(MediaType.APPLICATION_JSON)
 	    		.content(requestJson))
 	    		.andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON))
-	    		.andExpect(jsonPath("$.data.employee", is(employee)))
+	    		.andExpect(jsonPath("$.data.employee", notNullValue()))
 	            .andExpect(jsonPath("$.data.fromDate", is("01 March")))
 	            .andExpect(jsonPath("$.data.toDate", is("31 March")))
 	            .andExpect(jsonPath("$.data.grossIncome", is(5004)))
 	            .andExpect(jsonPath("$.data.incomeTax", is(922)))
 	            .andExpect(jsonPath("$.data.superannuation", is(450)))
-	            .andExpect(jsonPath("$.data.netIncome", is(4082)));
+	            .andExpect(jsonPath("$.data.netIncome", is(4082)));	    
+	    
 	}
 	
 }
