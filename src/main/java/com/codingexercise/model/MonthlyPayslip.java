@@ -7,7 +7,7 @@ public class MonthlyPayslip {
 	String toDate;
 	int grossIncome;
 	int incomeTax;
-	int superAnnuation;
+	int superannuation;
 	int netIncome;
 	
 	public MonthlyPayslip(Employee employee, String fromDate, String toDate, int grossIncome, int incomeTax, int superannuation, int netIncome) {
@@ -16,7 +16,7 @@ public class MonthlyPayslip {
 		this.toDate = toDate;
 		this.grossIncome = grossIncome;
 		this.incomeTax = incomeTax;
-		this.superAnnuation = superannuation;
+		this.superannuation = superannuation;
 		this.netIncome = netIncome;
 	}
 	
@@ -37,7 +37,7 @@ public class MonthlyPayslip {
 	}
 	
 	public String getToDate() {
-		return fromDate;
+		return toDate;
 	}
 	
 	public void setToDate(String toDate) {
@@ -60,12 +60,12 @@ public class MonthlyPayslip {
 		this.incomeTax = incomeTax;
 	}
 	
-	public int getSuperAnnuation() {
-		return superAnnuation;
+	public int getSuperannuation() {
+		return superannuation;
 	}
 	
-	public void setSuperAnnuation(int superAnnuation) {
-		this.superAnnuation = superAnnuation;
+	public void setSuperannuation(int superannuation) {
+		this.superannuation = superannuation;
 	}
 	
 	public int getNetIncome() {
