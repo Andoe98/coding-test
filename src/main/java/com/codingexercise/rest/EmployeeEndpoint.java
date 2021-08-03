@@ -2,6 +2,8 @@ package com.codingexercise.rest;
 
 import static org.springframework.http.ResponseEntity.ok;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +23,8 @@ public class EmployeeEndpoint {
 	private EmployeeService employeeService;
 	
 	@PostMapping(value = "payslip", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ApiResponse> payslip(@RequestBody Employee employee) {
-		return ok().body(new ApiResponse(employeeService.getMonthlyPaySlip(employee),null));
+	public ResponseEntity<ApiResponse> payslip(@RequestBody List<Employee> employees) {
+		return ok().body(new ApiResponse(employeeService.getAllMonthlyPayslip(employees),null));
 		
 	}
 	

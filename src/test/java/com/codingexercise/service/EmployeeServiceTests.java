@@ -42,7 +42,7 @@ public class EmployeeServiceTests {
 
 	@Test
 	void testGetMonthlyPaySlip() {
-		MonthlyPayslip result = employeeService.getMonthlyPaySlip(employee);
+		MonthlyPayslip result = employeeService.calculateMonthlyPayslip(employee);
 		
 		assertThat(result).usingRecursiveComparison().isEqualTo(monthlyPayslip);
 			

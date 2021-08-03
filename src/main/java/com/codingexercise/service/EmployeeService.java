@@ -1,6 +1,8 @@
 package com.codingexercise.service;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 import org.springframework.stereotype.Component;
@@ -9,8 +11,17 @@ import com.codingexercise.model.Employee;
 import com.codingexercise.model.MonthlyPayslip;
 
 @Component
-public class EmployeeService {	
-	public MonthlyPayslip getMonthlyPaySlip(Employee employee) {
+public class EmployeeService {
+	public List<MonthlyPayslip> getAllMonthlyPayslip(List<Employee> employees) {
+		List<MonthlyPayslip> payslips = new ArrayList<>();
+		for(Employee employee : employees) {
+			payslips.add(calculateMonthlyPayslip(employee));
+		}
+		
+		return payslips;
+	}
+	
+	public MonthlyPayslip calculateMonthlyPayslip(Employee employee) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(Calendar.MONTH, employee.getPaymentMonth());
 		String fromDate = "01 " + calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
