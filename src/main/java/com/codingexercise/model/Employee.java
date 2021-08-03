@@ -37,7 +37,8 @@ public class Employee {
 	}
 	
 	public void setAnnualSalary(int annualSalary) {
-		this.annualSalary = annualSalary;
+		if (annualSalary > 0)
+			this.annualSalary = annualSalary;
 	}
 	
 	public int getPaymentMonth() {
@@ -45,7 +46,8 @@ public class Employee {
 	}
 	
 	public void setPaymentMonth(int paymentMonth) {
-		this.paymentMonth = paymentMonth;
+		if (paymentMonth >= 0 && paymentMonth < 12)
+			this.paymentMonth = paymentMonth;
 	}
 	
 	public double getSuperRate() {
@@ -53,7 +55,8 @@ public class Employee {
 	}
 	
 	public void setSuperRate(double superRate) {
-		this.superRate = superRate;
+		if (superRate >= 0 && superRate <= 50)
+			this.superRate = superRate;
 	}
 	
 }
