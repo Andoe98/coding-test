@@ -3,9 +3,12 @@ package com.codingexercise.service;
 import java.util.Calendar;
 import java.util.Locale;
 
+import org.springframework.stereotype.Component;
+
 import com.codingexercise.model.Employee;
 import com.codingexercise.model.MonthlyPayslip;
 
+@Component
 public class EmployeeService {	
 	public MonthlyPayslip getMonthlyPaySlip(Employee employee) {
 		Calendar calendar = Calendar.getInstance();
