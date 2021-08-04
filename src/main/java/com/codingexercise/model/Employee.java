@@ -9,11 +9,11 @@ public class Employee {
 	private double superRate;
 
 	public Employee(String firstName, String lastName, int annualSalary, int paymentMonth, double superRate) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.annualSalary = annualSalary;
-		this.paymentMonth = paymentMonth;
-		this.superRate = superRate;
+		setFirstName(firstName);
+		setLastName(lastName);
+		setAnnualSalary(annualSalary);
+		setPaymentMonth(paymentMonth);
+		setSuperRate(superRate);
 	}
 	
 	public String getFirstName() {
@@ -55,7 +55,7 @@ public class Employee {
 	}
 	
 	public void setSuperRate(double superRate) {
-		if (superRate >= 0 && superRate <= 50)
+		if (superRate >= 0 && superRate <= 0.5)
 			this.superRate = superRate;
 	}
 	

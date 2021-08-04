@@ -11,13 +11,13 @@ public class MonthlyPayslip {
 	int netIncome;
 	
 	public MonthlyPayslip(Employee employee, String fromDate, String toDate, int grossIncome, int incomeTax, int superannuation, int netIncome) {
-		this.employee = employee;
-		this.fromDate = fromDate;
-		this.toDate = toDate;
-		this.grossIncome = grossIncome;
-		this.incomeTax = incomeTax;
-		this.superannuation = superannuation;
-		this.netIncome = netIncome;
+		setEmployee(employee);
+		setFromDate(fromDate);
+		setToDate(toDate);
+		setGrossIncome(grossIncome);
+		setIncomeTax(incomeTax);
+		setSuperannuation(superannuation);
+		setNetIncome(netIncome);
 	}
 	
 	public Employee getEmployee() {
