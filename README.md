@@ -3,6 +3,9 @@
 ### Build
 mvn clean install
 
+### Deploy
+Deployed via Elestic Beanstalk using eb CLI
+
 ### Assumptions 
 The application has been split into three different package
 	The Model Layer (Data Layer: Employee.java, MonthlyPayslip.java) which handles incoming data
@@ -17,9 +20,9 @@ The output will return a List object to allow users to input multiple employees 
 
 ### Access endpoints
 
-*POST http://localhost:8080/employee/payslip
+*POST http://localhost:5000/employee/payslip
 
-curl --location --request POST 'http://localhost:8080/employee/payslip' \ 
+curl --location --request POST 'http://localhost:5000/employee/payslip' \ 
 --header 'Content-Type: application/json' \
 --data-raw '{
     "firstName":"firstName",
