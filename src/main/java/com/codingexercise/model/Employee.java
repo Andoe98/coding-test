@@ -1,11 +1,28 @@
 package com.codingexercise.model;
 
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Positive;
+
 public class Employee {
 	
+	@NotEmpty(message = "First name must not be empty")
 	private String firstName;
+	
+	@NotEmpty(message = "Last name must not be empty")
 	private String lastName;
+	
+	@Positive(message = "Annual salary must be greater than 0")
 	private int annualSalary;
+	
+	@Min(value = 0, message = "Payment month must be between 0 and 11")
+	@Max(value = 11, message = "Payment month must be between 0 and 11")
 	private int paymentMonth;
+	
+	@Min(value = 0, message = "Super rate must be between 0 and 0.5")
+	@DecimalMax(value = "0.5", message = "Super rate must be between 0 and 0.5")
 	private double superRate;
 
 	public Employee(String firstName, String lastName, int annualSalary, int paymentMonth, double superRate) {
@@ -37,8 +54,7 @@ public class Employee {
 	}
 	
 	public void setAnnualSalary(int annualSalary) {
-		if (annualSalary > 0)
-			this.annualSalary = annualSalary;
+		this.annualSalary = annualSalary;
 	}
 	
 	public int getPaymentMonth() {
@@ -46,8 +62,7 @@ public class Employee {
 	}
 	
 	public void setPaymentMonth(int paymentMonth) {
-		if (paymentMonth >= 0 && paymentMonth < 12)
-			this.paymentMonth = paymentMonth;
+		this.paymentMonth = paymentMonth;
 	}
 	
 	public double getSuperRate() {
@@ -55,8 +70,7 @@ public class Employee {
 	}
 	
 	public void setSuperRate(double superRate) {
-		if (superRate >= 0 && superRate <= 0.5)
-			this.superRate = superRate;
+		this.superRate = superRate;
 	}
 	
 }
