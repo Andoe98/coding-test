@@ -4,9 +4,8 @@
 mvn clean install
 
 ### Deploy
-Deployed via Elestic Beanstalk using eb CLI
-mvn clean install
-eb deploy
+Deploy infrastructure through AWS CDK
+cdk deploy
 
 ### Assumptions 
 The application has been split into three different package
