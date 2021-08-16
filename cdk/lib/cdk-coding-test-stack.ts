@@ -2,7 +2,7 @@ import { Stack, StackProps, Construct } from '@aws-cdk/core';
 import { Repository } from '@aws-cdk/aws-ecr';
 import { Vpc } from '@aws-cdk/aws-ec2';
 import { Cluster, ContainerImage, FargateService, FargateTaskDefinition } from '@aws-cdk/aws-ecs';
-import { Effect, PolicyStatement, Role, ServicePrincipal } from '@aws-cdk/aws-iam'
+import { Effect, ManagedPolicy, PolicyStatement, Role, ServicePrincipal } from '@aws-cdk/aws-iam'
 
 const repoName = 'coding-test-repository';
 
@@ -22,7 +22,7 @@ export class CdkCodingTestStack extends Stack {
     });
 
     const executionRole = new Role(this, 'coding-test-execution-role', {
-      assumedBy: new ServicePrincipal('ecs.amazonaws.com'),
+      assumedBy: new ServicePrincipal('ecs-tasks.amazonaws.com'),
       roleName: 'coding-test-execution-role'
     });
 
@@ -41,7 +41,7 @@ export class CdkCodingTestStack extends Stack {
 
     const taskDefinition = new FargateTaskDefinition(this, 'coding-test-task-definition', {
       executionRole,
-      family: 'coding-test-fargate-task-definition'
+      family: 'coding-test-task-definition'
     });
 
     const container = taskDefinition.addContainer('coding-test', {
@@ -51,9 +51,11 @@ export class CdkCodingTestStack extends Stack {
     const service = new FargateService(this, 'coding-test-fargate-service', {
       cluster,
       taskDefinition,
-      serviceName: 'coding-test-service',
+      serviceName: 'coding-test-fargate-service',
       assignPublicIp: true
-    })
+    });
+
+    service.taskDefinition.executionRole?.addManagedPolicy(ManagedPolicy.fromAwsManagedPolicyName('AmazonEC2ContainerRegistryPowerUser'));
 
   }
 }
