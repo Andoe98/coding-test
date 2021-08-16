@@ -1,0 +1,26 @@
+{
+  "requiresCompatibilities": ["FARGATE"],
+  "inferenceAccelerators": [],
+  "containerDefinitions": [
+    {
+      "name": "coding-test",
+      "image": "coding-test-repository:00000",
+      "resourceRequirements": null,
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": "5000",
+          "protocol": "tcp"
+        }
+      ]
+    }
+  ],
+  "volumes": [],
+  "networkMode": "awsvpc",
+  "memory": "512",
+  "cpu": "256",
+  "executionRoleArn": "arn:aws:iam::159494472912:role/coding-test-execution-role",
+  "family": "coding-test-task-definition",
+  "taskRoleArn": "",
+  "placementConstraints": []
+}
