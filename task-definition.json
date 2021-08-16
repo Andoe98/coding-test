@@ -9,10 +9,19 @@
       "essential": true,
       "portMappings": [
         {
-          "containerPort": "5000",
+          "containerPort": 5000,
+          "hostport": 5000,
           "protocol": "tcp"
         }
-      ]
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/coding-test",
+          "awslogs-region": "ap-southeast-2",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
     }
   ],
   "volumes": [],

@@ -1,6 +1,6 @@
 import { Stack, StackProps, Construct } from '@aws-cdk/core';
 import { Repository } from '@aws-cdk/aws-ecr';
-import { Vpc } from '@aws-cdk/aws-ec2';
+import { Peer, Port, SecurityGroup, Vpc } from '@aws-cdk/aws-ec2';
 import { Cluster, ContainerImage, FargateService, FargateTaskDefinition } from '@aws-cdk/aws-ecs';
 import { Effect, ManagedPolicy, PolicyStatement, Role, ServicePrincipal } from '@aws-cdk/aws-iam'
 
@@ -48,10 +48,18 @@ export class CdkCodingTestStack extends Stack {
       image: ContainerImage.fromRegistry('amazon/amazon-ecs-sample')
     });
 
+    const securityGroup = new SecurityGroup(this, 'coding-test-security-group', {
+      vpc,
+      securityGroupName: 'coding-test-security-group'
+    });
+
+    securityGroup.addIngressRule(Peer.anyIpv4(), Port.tcp(5000), 'allow access to springboot app');
+
     const service = new FargateService(this, 'coding-test-fargate-service', {
       cluster,
       taskDefinition,
       serviceName: 'coding-test-fargate-service',
+      securityGroups: [securityGroup],
       assignPublicIp: true
     });
 
