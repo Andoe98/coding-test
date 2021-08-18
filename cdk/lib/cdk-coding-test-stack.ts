@@ -14,7 +14,7 @@ export class CdkCodingTestStack extends Stack {
       repositoryName: repoName
     });
 
-    const vpc = new Vpc(this, 'coding-test-vpc', { maxAzs: 2 });
+    const vpc = new Vpc(this, 'coding-test-vpc', { maxAzs: 1 });
 
     const cluster = new Cluster(this, 'coding-test-cluster', {
       clusterName: 'coding-test-cluster',
@@ -47,6 +47,8 @@ export class CdkCodingTestStack extends Stack {
     const container = taskDefinition.addContainer('coding-test', {
       image: ContainerImage.fromRegistry('amazon/amazon-ecs-sample')
     });
+
+    container.addPortMappings({ containerPort:5000 });
 
     const securityGroup = new SecurityGroup(this, 'coding-test-security-group', {
       vpc,
