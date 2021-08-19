@@ -27,8 +27,7 @@ public class EmployeeServiceTests {
 			4082
 		);
 	
-	EmployeeService employeeService = new EmployeeService();
-	
+	EmployeeServiceImpl employeeService = new EmployeeServiceImpl();	
 	
 	
 	@Test
