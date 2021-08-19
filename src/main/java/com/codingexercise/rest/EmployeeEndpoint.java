@@ -29,7 +29,12 @@ public class EmployeeEndpoint {
 	
 	@PostMapping(value = "payslip", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ApiResponse> payslip(@RequestBody @NotEmpty(message = "Request cannot be empty list")  List<@Valid Employee> employees) {
-		return ok().body(new ApiResponse(employeeService.getAllMonthlyPayslip(employees),null));
+		return ok().body(
+				new ApiResponse(
+					employees.stream().map(e -> employeeService.calculateMonthlyPayslip(e)),
+					null
+				)
+			);
 		
 	}
 	
