@@ -38,4 +38,11 @@ public class EmployeeEndpoint {
 		
 	}
 	
+	@GetMapping(value = "test")
+	public String test() {
+		String testing = "testing";
+		return testing;
+	}
+	}
+
 }
