@@ -43,6 +43,5 @@ public class EmployeeEndpoint {
 		String testing = "testing";
 		return testing;
 	}
-	}
 
 }
